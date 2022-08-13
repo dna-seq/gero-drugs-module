@@ -1,8 +1,8 @@
 import polars as pl
 
 # loading of tables
-var_drug_ann = pl.read_csv("pgbprs/var_drug_ann.tsv", has_header = True, sep = "\t")
-study_parameters = pl.read_csv("pgbprs/study_parameters.tsv", has_header = True, sep = "\t)
+var_drug_ann = pl.read_csv("pgbprs/inputdata/var_drug_ann.tsv", has_header = True, sep = "\t")
+study_parameters = pl.read_csv("pgbprs/inputdata/study_parameters.tsv", has_header = True, sep = "\t)
 
 ### RSID as an example
 rsid = 'rs3745274'
