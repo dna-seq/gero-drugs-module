@@ -1,0 +1,33 @@
+## these are comments
+## they are here because they may be in VCFs
+Variant/Haplotypes	ref	alt
+rs1695	G	G
+rs1803274	C	T
+rs8636	C	C
+rs8636	C	C
+rs10305420	C	T
+rs6822844	G	G
+rs6822844	G	G
+rs6923761	A	G
+rs6878291	G	G
+rs4291	T	T
+rs12995526	C	C
+rs7563206	C	C
+rs123456	G	G
+rs123457	C	T
+rs123458	C	C
+rs123459	C	C
+rs123460	C	T
+rs123461	G	G
+rs123462	G	G
+rs123463	C	T
+rs123464	C	C
+rs123465	C	C
+rs123466	C	T
+rs123467	G	G
+rs123468	G	G
+rs123469	A	G
+rs123470	G	G
+rs123471	T	T
+rs123472	C	C
+rs123473	C	C

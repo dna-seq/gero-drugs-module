@@ -1,33 +1,77 @@
 import polars as pl
 
-# loading of tables
+### Initial preparation of data - it is needed only once
+
+## loading of source tables
+# var_drug_ann is Variant-Drug table
 var_drug_ann = pl.read_csv("pgbprs/inputdata/var_drug_ann.tsv", has_header = True, sep = "\t")
-study_parameters = pl.read_csv("pgbprs/inputdata/study_parameters.tsv", has_header = True, sep = "\t)
+# study_parameters is Study Parameters table
+study_parameters = pl.read_csv("pgbprs/inputdata/study_parameters.tsv", has_header = True, sep = "\t")
 
-### RSID as an example
-rsid = 'rs3745274'
+# ### RSID as an example
+# rsid = 'rs3745274'
 
-# get var_drug_ann data by RSID, main value is 'Variant Annotation ID' as ID (VAID) and select only needed columns ('Variant/Haplotypes', 'Variant Annotation ID', 'Drug(s)', 'Phenotype Category', 'Significance')
-annotationTab = var_drug_ann.filter(pl.col('Variant/Haplotypes') == rsid).select(['Variant/Haplotypes', 'Variant Annotation ID', 'Drug(s)', 'Phenotype Category', 'Significance'])
+# select only needed columns from Variant-Drug table: 'Variant/Haplotypes', 'Variant Annotation ID', 'Drug(s)', 'Phenotype Category', 'Significance' and 'Sentence' for future annotation tab
+var_drug_ann_shrink = var_drug_ann.select(['Variant Annotation ID', 'Variant/Haplotypes', 'Drug(s)', 'Phenotype Category', 'Significance', 'Sentence'])
 
-# make shrinked study_parameters DF
-study_parameters_shrink = study_parameters.select(['Variant Annotation ID', 'P Value', 'Ratio Stat Type', 'Ratio Stat', 'Confidence Interval Start', 'Confidence Interval Stop'])
+# select only needed columns from Study Parameters table: 'Variant Annotation ID', 'P Value', 'Ratio Stat Type', 'Ratio Stat', 'Confidence Interval Start', 'Confidence Interval Stop' 
+study_parameters_shrink = study_parameters.select(['Variant Annotation ID', 'Allele Of Frequency In Cases', 'Allele Of Frequency In Controls', 'P Value', 'Ratio Stat Type', 'Ratio Stat', 'Confidence Interval Start', 'Confidence Interval Stop'])
 
-# merge variant data annotationTab with shrinked study_parameters table - may be used for SNP effect accounting
-temp = annotationTab.join(study_parameters_shrink, on = 'Variant Annotation ID')
+# merge shrinked Variant-Drug table with shrinked study_parameters table for assembly of Annotation table
+annotationTab = var_drug_ann_shrink.join(study_parameters_shrink, on = 'Variant Annotation ID')
+
+## Filtration
+# ! exclude and save entries with multiple 'Variant/Haplotypes' values (contains ',')
+problematicMultiVarHapEntries = annotationTab.filter(pl.col('Variant/Haplotypes').str.contains(","))
+annotationTab = annotationTab.filter(pl.col('Variant/Haplotypes').str.contains(",") == False)
+# ! exclude and save entries with multiple 'Drug(s)' values (contains ',' or '/') !
+problematicMultiDrugEntries = annotationTab.filter(pl.col('Drug(s)').str.contains(",|/"))
+annotationTab = annotationTab.filter(pl.col('Drug(s)').str.contains(",|/") == False)
+# ! exclude and save entries with multiple 'Phenotype Category'
+problematicMultiPhenoCat = annotationTab.filter(pl.col('Phenotype Category').str.contains(",|/"))
+annotationTab = annotationTab.filter(pl.col('Phenotype Category').str.contains(",|/") == False)
+# ! exclude and save entries with drug class instead of ecact class in 'Drug(s)' values (contains 's$')
+# ...except 'us$' because tacrolimus and sirolimus are not classes
+problematicDrugClass = annotationTab.filter(pl.col('Drug(s)').str.contains("[^u]s$"))
+annotationTab = annotationTab.filter(pl.col('Drug(s)').str.contains("[^u]s$") == False)
+# ! exclude and save entries with Haplotypes in 'Variant/Haplotypes'
+problematicHaps = annotationTab.filter(pl.col('Variant/Haplotypes').str.contains("^rs") == False)
+annotationTab = annotationTab.filter(pl.col('Variant/Haplotypes').str.contains("^rs"))
+# ! exclude and save entries with "unknown" 'Ratio Stat Type'
+problematicUnknownStatType = annotationTab.filter(pl.col('Ratio Stat Type').str.contains("Unknown"))
+annotationTab = annotationTab.filter(pl.col('Ratio Stat Type').str.contains("Unknown") == False)
+# ! exclude and save entries with null Ref and/or Alt nucleotudes in 'Allele Of Frequency In Cases' and 'Allele Of Frequency In Controls'
+problematicUnclearRefAltNucl = annotationTab.filter((pl.col('Allele Of Frequency In Cases') == '') | (pl.col('Allele Of Frequency In Controls') == ''))
+annotationTab = annotationTab.filter((pl.col('Allele Of Frequency In Cases') != '') & (pl.col('Allele Of Frequency In Controls') != ''))
+
+# drop entries with null Ratio Stai - with unknown effect value and useless for PRS construction
+annotationTab = annotationTab.filter(pl.col('Ratio Stat').is_not_null())
+
+# save data with problematic entries
+problematicMultiVarHapEntries.to_csv('pgbprs/tempdata/excluded/problematicMultiVarHapEntries.csv', sep = "\t")
+problematicMultiDrugEntries.to_csv('pgbprs/tempdata/excluded/problematicMultiDrugEntries.csv', sep = "\t")
+problematicMultiPhenoCat.to_csv('pgbprs/tempdata/excluded/problematicMultiPhenoCat.csv', sep = "\t")
+problematicDrugClass.to_csv('pgbprs/tempdata/excluded/problematicDrugClass.csv', sep = "\t")
+problematicHaps.to_csv('pgbprs/tempdata/excluded/problematicHaps.csv', sep = "\t")
+problematicUnknownStatType.to_csv('pgbprs/tempdata/excluded/problematicUnknownStatType.csv', sep = "\t")
+problematicUnclearRefAltNucl.to_csv('pgbprs/tempdata/excluded/problematicUnclearRefAltNucl.csv', sep = "\t")
+
+## save filtered data to CSV
+annotationTab.to_csv('pgbprs/tempdata/annotation_tab.csv', sep = "\t")
 
 
-## Estimations
-# merge shrinked study_parameters with var_drug_ann table
-temp2 = var_drug_ann.join(study_parameters_shrink, on = 'Variant Annotation ID')
-# remove haplotypes
-temp2 = temp2[temp2['Variant/Haplotypes'].str.contains("^rs")]
-# ~8300 kept
-temp2 = temp2[temp2['Ratio Stat'].is_not_null()]
-# ~1500 entries have non-null Ratio Stat value
-temp2['Variant/Haplotypes'].value_counts()
-# and ~880 have unique SNP
-temp2['Drug(s)'].value_counts()
-# ~200 unique drgus but estimation is very rough due to frequent multiple drug entries
+## Genotype analysis
+
+# # load Anton's VCF as sample
+# personvcf = pl.read_csv("antonkulaga.vcf", has_header = False, sep = "\t", comment_char = "#")
+
+# load toy sample
+variantsTab = pl.read_csv("pgbprs/inputdata/toy-rsids.tsv", has_header = True, sep = "\t", comment_char = "#")
+
+# report table
+reportTab = annotationTab.join(variantsTab, on = 'Variant/Haplotypes')
+
+# save report table
+reportTab.to_csv('pgbprs/output/report.csv', sep = "\t")
 
 
