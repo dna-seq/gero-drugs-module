@@ -1,0 +1,32 @@
+node_modules
+*.class
+*.log
+logs
+.~*
+noarch
+#VIM spegcific
+tags
+.*.swp
+.*.swo
+
+#MAC OS specific
+.DS_Store
+
+# sbt specificf
+.cache/
+.history/
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+.idea
+.idea/*
+
+*.egg-info
+**/.ipynb_checkpoints/*
+__pycache__/
+/data.xml
+
