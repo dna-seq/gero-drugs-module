@@ -1,6 +1,6 @@
 ### pgbprs
 
-Code for gero-grugs module.
+Code for gero-drugs module.
 
 ## Current description
 
@@ -18,6 +18,45 @@ Tool uses the *PharmGKB* (database)[https://www.pharmgkb.org/] as a source for i
 - PGBPRS.R is an investigational script for PharmGKB tables parsing and analysis, needed only for developmental reasons. According to it we decided to use var\_drug\_ann.tsv and study\_parameters.tsv tables.
 - SharedCols.png is a technical output image for shared columns determination across all available PharmGKB tables.
 
+
+## setting up
+
+Install conda/micromamba environment
+-------------------------
+Annotation modules and dvc are included in the conda environment that goes with the project.
+The environment can be setup either with Anaconda or micromamba (superior version of conda).
+Here is installation instruction for micromamba:
+```
+wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+```
+We can use ./micromamba shell init ... to initialize a shell (.bashrc) and a new root environment in ~/micromamba:
+```
+./bin/micromamba shell init -s bash -p ~/micromamba
+source ~/.bashrc
+```
+To create a micromamba environment use:
+```
+micromamba create -f environment.yaml
+micromamba activate gero-drugs
+```
+
+The instructions above are provided for Linux and MacOS (note: in MacOS you have to install wget).
+For Windows you can either install Linux Subsystem or use Windows version of anaconda.
+
+Runing gero-drugs
+--------------
+
+To annotate samples you should use gero_drugs.py command line tool.
+First, you should activate your environment and prepare the annotations by running
+```
+micromamba activate gero-drugs
+python gero_drugs.py init
+```
+Then you can generate report by running:
+```
+python gero_drugs run inputdata/toy-rsids.tsv tempdata/annotation_tab.tsv
+```
+where you can substitute the default values with the ones you want.
 
 # Workflow
 

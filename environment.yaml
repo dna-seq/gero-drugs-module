@@ -1,0 +1,14 @@
+name: gero-drugs
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - jupyterlab
+  - click
+  - beartype
+  - pip:
+      - pyfunctional
+      - pycomfort
+      - polars
