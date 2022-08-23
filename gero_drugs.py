@@ -57,10 +57,12 @@ def filter_annotations(annotation_tab: pl.DataFrame, base: Path) -> pl.DataFrame
     annotation_tab = annotation_tab.filter(pl.col("Ratio Stat Type").str.contains("Unknown") == False)
     # ! exclude and save entries with null Ref and/or Alt nucleotudes in "Allele Of Frequency In Cases" and "Allele Of Frequency In Controls"
     problematic_unclear_ref_alt_nucl = annotation_tab.filter(
-        (pl.col("Allele Of Frequency In Cases") == "") | (pl.col("Allele Of Frequency In Controls") == ""))
+        (pl.col("Allele Of Frequency In Cases").is_null()) | (pl.col("Allele Of Frequency In Controls").is_null()))
     annotation_tab = annotation_tab.filter(
-        (pl.col("Allele Of Frequency In Cases") != "") & (pl.col("Allele Of Frequency In Controls") != ""))
-    # drop entries with null Ratio Stai - with unknown effect value and useless for PRS construction
+        (pl.col("Allele Of Frequency In Cases").is_not_null()) & (pl.col("Allele Of Frequency In Controls").is_not_null()))
+    # ! exclude and save entries with the same Ref and Alt nucleotudes in "Allele Of Frequency In Cases" and "Allele Of Frequency In Controls"
+    problematic_same_ref_alt_nucl = annotation_tab.filter(pl.col("Allele Of Frequency In Cases") == pl.col("Allele Of Frequency In Controls"))
+    annotation_tab = annotation_tab.filter(pl.col("Allele Of Frequency In Cases") != pl.col("Allele Of Frequency In Controls"))
 
     # save data with problematic entries
     excluded = base / "tempdata" / "excluded"
@@ -73,6 +75,8 @@ def filter_annotations(annotation_tab: pl.DataFrame, base: Path) -> pl.DataFrame
     problematic_haps.write_csv(f"{str(excluded)}/problematic_haps.csv", sep = "\t")
     problematic_unknown_stat_type.write_csv(f"{str(excluded)}/problematic_unknown_stat_type.tsv", sep = "\t")
     problematic_unclear_ref_alt_nucl.write_csv(f"{str(excluded)}/problematic_unclear_ref_alt_nucl.tsv", sep = "\t")
+    problematic_same_ref_alt_nucl.write_csv(f"{str(excluded)}/problematic_same_ref_alt_nucl.tsv", sep = "\t")
+    # drop entries with null Ratio Stat - with unknown effect value and useless for PRS construction
     annotation_tab_filtered = annotation_tab.filter(pl.col("Ratio Stat").is_not_null())
 
     filter_annotations_path = base / "tempdata" / "annotation_tab.tsv"
@@ -87,8 +91,14 @@ def analyze(sample: str, annotation_tab, base: Path) -> Union[str, Path]:
     # personvcf = pl.read_csv("antonkulaga.vcf", has_header = False, sep = "\t", comment_char = "#")
     # load toy sample
     variants_tab = pl.read_csv(sample, has_header=True, sep="\t", comment_char="#")
-    # report table
+    # prepare report table
     report_tab = annotation_tab.join(variants_tab, on="Variant/Haplotypes")
+    # create a separate column for output
+    report_tab = report_tab.with_column(pl.col('Ratio Stat').alias('Effect'))
+    # perform interprepation - substitute 'Alt' from genome to 'Allele Of Frequency In Cases' to table, it they don't match - invert effect vale
+    report_tab = report_tab.with_column(pl.when(pl.col('Allele Of Frequency In Cases') == pl.col('alt')).then(pl.col('Effect')).otherwise((1/pl.col('Effect')).round(3)))
+    # remove useless now columns
+    report_tab = report_tab.drop(['Variant Annotation ID', 'Ratio Stat', 'Confidence Interval Start', 'Confidence Interval Stop', 'P Value', 'alt', 'ref'])
     # save report table
     report_path = f"{str(base)}/output/report.tsv"
     report_tab.write_csv(report_path, sep="\t")
