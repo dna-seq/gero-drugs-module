@@ -146,7 +146,12 @@ def report(report_tsv: str, report_aggr_tsv: str, drug_list: str, output: str):
     report = pl.read_csv(report_tsv, sep="\t", comment_char="#", ignore_errors=True).rename({'Drug(s)': "Drug"})
     report_aggr = pl.read_csv(report_aggr_tsv, sep="\t", comment_char="#", ignore_errors=True).rename({'Drug(s)': "Drug"})
     drug_list = pl.read_csv(drug_list, sep="\t", comment_char="#", ignore_errors=True)
-    agg_rows = report_aggr.join(drug_list,on="Drug").sort(["Effect", "Longevity association"], reverse=True)
+    to_num = pl.col("Longevity association").str.replace("None", "0").str.replace("low", "1").str.replace("average", "2").str.replace("strong", "3")\
+        .cast(pl.Int32).alias("longevity_number")
+    agg_rows = report_aggr.join(drug_list,on="Drug")\
+        .with_column(to_num)\
+        .with_column(pl.col("Effect").round(4))\
+        .sort(["longevity_number", "Effect"], reverse=True)
     with result.open("w+") as f:
         template_str = Template(filename='./templates/report.html').render(agg_rows = agg_rows, report = report)
         f.write(template_str)
