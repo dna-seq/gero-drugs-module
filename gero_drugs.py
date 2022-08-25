@@ -91,6 +91,8 @@ def analyze(sample: str, annotation_tab, base: Path) -> Union[str, Path]:
     # personvcf = pl.read_csv("antonkulaga.vcf", has_header = False, sep = "\t", comment_char = "#")
     # load toy sample
     variants_tab = pl.read_csv(sample, has_header=True, sep="\t", comment_char="#")
+    # rename RSID
+    variants_tab = variants_tab.rename({"rsid": "Variant/Haplotypes"})
     # prepare report table
     report_tab = annotation_tab.join(variants_tab, on="Variant/Haplotypes")
     # create a separate column for output
@@ -99,9 +101,14 @@ def analyze(sample: str, annotation_tab, base: Path) -> Union[str, Path]:
     report_tab = report_tab.with_column(pl.when(pl.col('Allele Of Frequency In Cases') == pl.col('alt')).then(pl.col('Effect')).otherwise((1/pl.col('Effect')).round(3)))
     # remove useless now columns
     report_tab = report_tab.drop(['Variant Annotation ID', 'Ratio Stat', 'Confidence Interval Start', 'Confidence Interval Stop', 'P Value', 'alt', 'ref'])
+    # aggregation by drugs in table2
+    report_tab2 = report_tab.drop(['Variant/Haplotypes', 'Phenotype Category', 'Significance', 'Sentence', 'Allele Of Frequency In Cases', 'Allele Of Frequency In Controls', 'Ratio Stat Type'])
+    report_tab2 = report_tab2.groupby("Drug(s)").mean()
     # save report table
     report_path = f"{str(base)}/output/report.tsv"
+    report_path2 = f"{str(base)}/output/report-aggr.tsv"
     report_tab.write_csv(report_path, sep="\t")
+    report_tab2.write_csv(report_path2, sep="\t")
     print(f"successfully wrote report to {report_path}")
     return report_path
 
@@ -116,7 +123,7 @@ def init(base: str = "."):
     return annotation_tab
 
 @app.command("run")
-@click.argument("sample", type=click.Path(exists=True), default="./inputdata/toy-rsids.tsv")
+@click.argument("sample", type=click.Path(exists=True), default="./inputdata/borysova.vcf.gz.pharma.tsv")
 @click.argument("annotations", type=click.Path(exists=True), default="./tempdata/annotation_tab.tsv")
 @click.argument("base", default=".")
 def run(sample: str, annotations: str, base: str):
