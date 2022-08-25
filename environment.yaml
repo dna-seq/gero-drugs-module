@@ -5,9 +5,9 @@ channels:
   - defaults
 dependencies:
   - python=3.10
-  - jupyterlab
   - click
   - beartype
+  - mako
   - pip:
       - pyfunctional
       - pycomfort

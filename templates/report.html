@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <script>
+        function expand(obj){
+            let tdEl = obj.children[0];
+            let el = obj.nextSibling;
+            if (el.nodeName === "#text")
+                el = el.nextSibling;
+
+            el.style.display = "";
+            tdEl.innerHTML = "<div class=\"ui tiny circular compact negative button\">-</div>";
+            //obj.style.backgroundColor = "#e0e0e0";
+        }
+
+        function collapse(obj){
+            let tdEl = obj.children[0];
+            let el = obj.nextSibling;
+            if (el.nodeName === "#text")
+                el = el.nextSibling;
+
+            el.style.display = "none";
+            tdEl.innerHTML = "<div class=\"ui tiny circular compact positive button\">+</div>";
+            //obj.style.backgroundColor = "#eeeeee";
+        }
+
+        function doOnClick(obj){
+            let el = obj.nextSibling;
+            if (el.nodeName === "#text")
+                el = el.nextSibling;
+
+            if(el.style.display === "none")
+                expand(obj);
+            else
+                collapse(obj);
+        }
+
+        function collapseExpandAll(obj, id){
+            let el = document.getElementById(id);
+            if(obj.innerHTML == "<div class=\"ui tiny circular compact positive button\">+</div>"){
+                for(let i in el.children)
+                    if(el.children[i].children && el.children[i].children.length > 3)
+                        expand(el.children[i]);
+                obj.innerHTML = "<div class=\"ui tiny circular compact negative button\">-</div>";
+            } else {
+                for(let i in el.children)
+                    if(el.children[i].children && el.children[i].children.length > 3)
+                        collapse(el.children[i]);
+                obj.innerHTML = "<div class=\"ui tiny circular compact positive button\">+</div>";
+            }
+        }
+
+        function accordion(obj){
+            let next = obj;
+            let prev = obj;
+            while(prev = prev.previousSibling){
+                if(prev.nodeName === "TABLE")
+                    prev.style.display = "none";
+            }
+            let flag = true;
+            while(next = next.nextSibling){
+                if(next.nodeName === "TABLE")
+                    if (flag){
+                        next.style.display = "";
+                        flag = false;
+                    } else
+                        next.style.display = "none";
+            }
+        }
+    </script>
+</HEAD>
+<BODY>
+<table class="ui selectable celled orange table">
+    <thead>
+    <tr>
+        <th><div onclick="collapseExpandAll(this, 'longTBody')" class="ui circular compact positive button">+</div></th>
+        <th>Drug</th>
+        <th>Description</th>
+        <th>Longevity usage</th>
+        <th>Longevity pathways</th>
+        <th>Longevity association</th>
+        <th>Effect</th>
+    </tr>
+    </thead>
+        % for row in rows:
+        <tr onclick="doOnClick(this)">
+            <td><div class="ui tiny circular compact positive button">+</div></td>
+            <td>${row['Drug']}</td>
+            <td>${row['Drug summary']}</td>
+            <td>${row['Main adverse effects']}</td>
+            <td>${row['Longevity usage']}</td>
+            <td>${row['Longevity pathways']}</td>
+            <td>${row['Longevity association']}</td>
+            <td>${row['Effect']}</td>
+        </tr>
+        <tr style="display:none;">
+            <td colspan="5">
+                <table class="ui padded table">
+                    <tr><td>${row}</td></tr>
+                </table>
+            </td>
+        </tr>
+        % endfor
+</tr>
+</table>
+</BODY>
+</HTML>
