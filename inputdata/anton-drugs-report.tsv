@@ -1,0 +1,104 @@
+Variant/Haplotypes	Drug(s)	Phenotype Category	Significance	Sentence	Allele Of Frequency In Cases	Allele Of Frequency In Controls	Ratio Stat Type	Effect
+rs1051740	carbamazepine	Efficacy	no	Genotype TT is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes CC + CT.	C	T	OR	0.98
+rs2234922	carbamazepine	Efficacy	no	Genotype AA is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AG + GG.	A	G	OR	0.952
+rs1800497	bupropion	Efficacy	no	Genotypes AA + AG are not associated with response to bupropion in people with Tobacco Use Disorder as compared to genotype GG.	A	G	OR	0.82
+rs2160734	acamprosate	Efficacy	no	Allele C is not associated with response to acamprosate in people with Alcoholism as compared to allele T.	C	T	HR	1.754
+rs9923231	warfarin	Efficacy	yes	Genotype CT is associated with decreased response to warfarin in people with Ventricular Dysfunction, Left as compared to genotype TT.	T	C	OR	4.89
+rs2279343	bupropion	Efficacy	yes	Genotype AA is associated with increased response to bupropion in people with Tobacco Use Disorder as compared to genotypes AG + GG.	A	G	OR	0.521
+rs4810083	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	0.89
+rs266729	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CG + GG.	G	C	OR	1.219
+rs3821799	pioglitazone	Efficacy	no	Genotypes CT + TT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype CC.	C	T	OR	1.131
+rs3774261	pioglitazone	Efficacy	no	Genotypes AG + GG are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype AA.	G	A	OR	1.209
+rs2082940	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CT + TT.	C	T	OR	1.303
+rs1063538	pioglitazone	Efficacy	no	Genotypes CC + CT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype TT.	C	T	OR	1.255
+rs2231142	sunitinib	Efficacy	no	Genotype TT is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes GG + GT.	T	G	OR	0.8
+rs2231142	allopurinol	Efficacy	yes	Genotypes GT + TT are associated with decreased response to allopurinol in people with Gout as compared to genotype GG.	G	T	OR	0.36
+rs10011796	allopurinol	Efficacy	no	Genotypes CT + TT are not associated with response to allopurinol in people with Gout as compared to genotype CC.	C	T	OR	0.85
+rs249429	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	1.471
+rs1045642	carbamazepine	Efficacy	no	Genotype GG is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AA + AG.	G	A	OR	1.06
+rs1045642	imatinib	Efficacy	no	Allele A is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele G.	G	A	OR	0.62
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	OR	0.5
+rs1800497	bupropion	Efficacy	no	Genotypes AA + AG are not associated with response to bupropion in people with Tobacco Use Disorder as compared to genotype GG.	A	G	OR	0.82
+rs2160734	acamprosate	Efficacy	no	Allele C is not associated with response to acamprosate in people with Alcoholism as compared to allele T.	C	T	HR	1.754
+rs9923231	warfarin	Efficacy	yes	Genotype CT is associated with decreased response to warfarin in people with Ventricular Dysfunction, Left as compared to genotype TT.	T	C	OR	4.89
+rs2279343	bupropion	Efficacy	yes	Genotype AA is associated with increased response to bupropion in people with Tobacco Use Disorder as compared to genotypes AG + GG.	A	G	OR	0.521
+rs4810083	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	0.89
+rs266729	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CG + GG.	G	C	OR	1.219
+rs3821799	pioglitazone	Efficacy	no	Genotypes CT + TT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype CC.	C	T	OR	1.131
+rs3774261	pioglitazone	Efficacy	no	Genotypes AG + GG are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype AA.	G	A	OR	1.209
+rs2082940	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CT + TT.	C	T	OR	1.303
+rs1063538	pioglitazone	Efficacy	no	Genotypes CC + CT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype TT.	C	T	OR	1.255
+rs2231142	sunitinib	Efficacy	no	Genotype TT is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes GG + GT.	T	G	OR	0.8
+rs2231142	allopurinol	Efficacy	yes	Genotypes GT + TT are associated with decreased response to allopurinol in people with Gout as compared to genotype GG.	G	T	OR	0.36
+rs10011796	allopurinol	Efficacy	no	Genotypes CT + TT are not associated with response to allopurinol in people with Gout as compared to genotype CC.	C	T	OR	0.85
+rs249429	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	1.471
+rs1045642	carbamazepine	Efficacy	no	Genotype GG is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AA + AG.	G	A	OR	1.06
+rs1045642	imatinib	Efficacy	no	Allele A is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele G.	G	A	OR	0.62
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	OR	0.5
+rs9923231	warfarin	Efficacy	yes	Genotype CT is associated with decreased response to warfarin in people with Ventricular Dysfunction, Left as compared to genotype TT.	T	C	OR	4.89
+rs2279343	bupropion	Efficacy	yes	Genotype AA is associated with increased response to bupropion in people with Tobacco Use Disorder as compared to genotypes AG + GG.	A	G	OR	0.521
+rs4810083	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	0.89
+rs266729	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CG + GG.	G	C	OR	1.219
+rs3821799	pioglitazone	Efficacy	no	Genotypes CT + TT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype CC.	C	T	OR	1.131
+rs3774261	pioglitazone	Efficacy	no	Genotypes AG + GG are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype AA.	G	A	OR	1.209
+rs2082940	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CT + TT.	C	T	OR	1.303
+rs1063538	pioglitazone	Efficacy	no	Genotypes CC + CT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype TT.	C	T	OR	1.255
+rs2231142	sunitinib	Efficacy	no	Genotype TT is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes GG + GT.	T	G	OR	0.8
+rs2231142	allopurinol	Efficacy	yes	Genotypes GT + TT are associated with decreased response to allopurinol in people with Gout as compared to genotype GG.	G	T	OR	0.36
+rs10011796	allopurinol	Efficacy	no	Genotypes CT + TT are not associated with response to allopurinol in people with Gout as compared to genotype CC.	C	T	OR	0.85
+rs249429	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	1.471
+rs1045642	carbamazepine	Efficacy	no	Genotype GG is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AA + AG.	G	A	OR	1.06
+rs1045642	imatinib	Efficacy	no	Allele A is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele G.	G	A	OR	0.62
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	OR	0.5
+rs4810083	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	0.89
+rs266729	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CG + GG.	G	C	OR	1.219
+rs3821799	pioglitazone	Efficacy	no	Genotypes CT + TT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype CC.	C	T	OR	1.131
+rs3774261	pioglitazone	Efficacy	no	Genotypes AG + GG are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype AA.	G	A	OR	1.209
+rs2082940	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CT + TT.	C	T	OR	1.303
+rs1063538	pioglitazone	Efficacy	no	Genotypes CC + CT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype TT.	C	T	OR	1.255
+rs2231142	sunitinib	Efficacy	no	Genotype TT is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes GG + GT.	T	G	OR	0.8
+rs2231142	allopurinol	Efficacy	yes	Genotypes GT + TT are associated with decreased response to allopurinol in people with Gout as compared to genotype GG.	G	T	OR	0.36
+rs10011796	allopurinol	Efficacy	no	Genotypes CT + TT are not associated with response to allopurinol in people with Gout as compared to genotype CC.	C	T	OR	0.85
+rs249429	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	1.471
+rs1045642	carbamazepine	Efficacy	no	Genotype GG is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AA + AG.	G	A	OR	1.06
+rs1045642	imatinib	Efficacy	no	Allele A is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele G.	G	A	OR	0.62
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	OR	0.5
+rs266729	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CG + GG.	G	C	OR	1.219
+rs3821799	pioglitazone	Efficacy	no	Genotypes CT + TT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype CC.	C	T	OR	1.131
+rs3774261	pioglitazone	Efficacy	no	Genotypes AG + GG are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype AA.	G	A	OR	1.209
+rs2082940	pioglitazone	Efficacy	no	Genotype CC are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotypes CT + TT.	C	T	OR	1.303
+rs1063538	pioglitazone	Efficacy	no	Genotypes CC + CT are not associated with response to pioglitazone in people with Diabetes Mellitus as compared to genotype TT.	C	T	OR	1.255
+rs2231142	sunitinib	Efficacy	no	Genotype TT is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes GG + GT.	T	G	OR	0.8
+rs2231142	allopurinol	Efficacy	yes	Genotypes GT + TT are associated with decreased response to allopurinol in people with Gout as compared to genotype GG.	G	T	OR	0.36
+rs10011796	allopurinol	Efficacy	no	Genotypes CT + TT are not associated with response to allopurinol in people with Gout as compared to genotype CC.	C	T	OR	0.85
+rs249429	metformin	Efficacy	no	Allele T is not associated with response to metformin in people with Diabetes Mellitus as compared to allele C.	C	T	OR	1.471
+rs1045642	carbamazepine	Efficacy	no	Genotype GG is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AA + AG.	G	A	OR	1.06
+rs1045642	imatinib	Efficacy	no	Allele A is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele G.	G	A	OR	0.62
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	OR	0.5
+rs1045642	carbamazepine	Efficacy	no	Genotype GG is not associated with resistance to carbamazepine in people with Epilepsy as compared to genotypes AA + AG.	G	A	OR	1.06
+rs1045642	imatinib	Efficacy	no	Allele A is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele G.	G	A	OR	0.62
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs2032582	imatinib	Efficacy	no	Allele T is not associated with response to imatinib in people with Leukemia, Myelogenous, Chronic, BCR-ABL Positive as compared to allele A.	G	A	OR	1.754
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	HR	1.7
+rs1128503	sunitinib	Efficacy	no	Genotype AA is not associated with response to sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.	G	A	OR	0.5

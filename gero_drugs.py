@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from beartype import beartype
 import polars as pl
 import click
@@ -132,6 +134,23 @@ def run(sample: str, annotations: str, base: str):
     annotation_tab = pl.read_csv(annotations, sep="\t", has_header=True, comment_char="#")
     return analyze(sample, annotation_tab, base_folder)
 
+@app.command("report")
+@click.argument("report_tsv",  type=click.Path(exists=True), default="./inputdata/anton-drugs-report.tsv")
+@click.argument("report_aggr_tsv",  type=click.Path(exists=True), default="./inputdata/anton-drugs-report-aggr.tsv")
+@click.argument("drug_list",  type=click.Path(exists=True), default="./inputdata/drug_list.tsv")
+@click.argument("output",  type=click.Path(exists=False), default="./output/anton_drugs.html")
+def report(report_tsv: str, report_aggr_tsv: str, drug_list: str, output: str):
+    from mako.template import Template
+    result = Path(output)
+    result.unlink(missing_ok=True)
+    report = pl.read_csv(report_tsv, sep="\t", comment_char="#", ignore_errors=True).rename({'Drug(s)': "Drug"})
+    report_aggr = pl.read_csv(report_aggr_tsv, sep="\t", comment_char="#", ignore_errors=True).rename({'Drug(s)': "Drug"})
+    drug_list = pl.read_csv(drug_list, sep="\t", comment_char="#", ignore_errors=True)
+    agg_rows = report_aggr.join(drug_list,on="Drug").sort(["Effect", "Longevity association"], reverse=True)
+    with result.open("w+") as f:
+        template_str = Template(filename='./templates/report.html').render(agg_rows = agg_rows, report = report)
+        f.write(template_str)
+    print(f"report based on {report_tsv} and {report_aggr_tsv} is written to {output}!")
 
 if __name__ == "__main__":
     app()
