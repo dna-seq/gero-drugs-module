@@ -143,14 +143,12 @@ def report(report_tsv: str, report_aggr_tsv: str, drug_list: str, output: str):
     from mako.template import Template
     result = Path(output)
     result.unlink(missing_ok=True)
-    report = pl.read_csv(report_tsv, sep="\t", comment_char="#", ignore_errors=True)
+    report = pl.read_csv(report_tsv, sep="\t", comment_char="#", ignore_errors=True).rename({'Drug(s)': "Drug"})
     report_aggr = pl.read_csv(report_aggr_tsv, sep="\t", comment_char="#", ignore_errors=True).rename({'Drug(s)': "Drug"})
     drug_list = pl.read_csv(drug_list, sep="\t", comment_char="#", ignore_errors=True)
-    #Drug 	Drug summary	Main adverse effects	Longevity usage	Longevity pathways	Longevity association
-    print(drug_list.columns)
-    agg_rows = report_aggr.join(drug_list,on="Drug").to_dicts()
+    agg_rows = report_aggr.join(drug_list,on="Drug").sort(["Effect", "Longevity association"], reverse=True)
     with result.open("w+") as f:
-        template_str = Template(filename='./templates/report.html').render(rows = agg_rows)
+        template_str = Template(filename='./templates/report.html').render(agg_rows = agg_rows, report = report)
         f.write(template_str)
     print(f"report based on {report_tsv} and {report_aggr_tsv} is written to {output}!")
 

@@ -81,9 +81,13 @@
         <th>Longevity usage</th>
         <th>Longevity pathways</th>
         <th>Longevity association</th>
+        <th>Longevity association</th>
         <th>Effect</th>
     </tr>
     </thead>
+        <%
+            rows = agg_rows.to_dicts()
+        %>
         % for row in rows:
         <tr onclick="doOnClick(this)">
             <td><div class="ui tiny circular compact positive button">+</div></td>
@@ -97,8 +101,39 @@
         </tr>
         <tr style="display:none;">
             <td colspan="5">
+                <%
+                    import polars as pl
+                    details = report.filter(pl.col("Drug").str.contains(row['Drug'])).to_dicts()
+                %>
                 <table class="ui padded table">
-                    <tr><td>${row}</td></tr>
+                    <tr>
+                        <th>Variant/Haplotypes</th>
+                        <th>Phenotype Category</th>
+                        <th>Significance</th>
+                        <th>Sentence</th>
+                        <th>Variant/Haplotypes</th>
+                        <th>Phenotype Category</th>
+                        <th>Significance</th>
+                        <th>Sentence</th>
+                        <th>Allele Of Frequency In Cases</th>
+                        <th>Allele Of Frequency In Controls</th>
+                        <th>Ratio Stat Type</th>
+                    </tr>
+                    % for info in details:
+                    <tr>
+                        <td>${info['Variant/Haplotypes']}</td>
+                        <td>${info['Phenotype Category']}</td>
+                        <td>${info['Significance']}</td>
+                        <td>${info['Sentence']}</td>
+                        <td>${info['Variant/Haplotypes']}</td>
+                        <td>${info['Phenotype Category']}</td>
+                        <td>${info['Significance']}</td>
+                        <td>${info['Sentence']}</td>
+                        <td>${info['Allele Of Frequency In Cases']}</td>
+                        <td>${info['Allele Of Frequency In Controls']}</td>
+                        <td>${info['Ratio Stat Type']}</td>
+                    </tr>
+                    % endfor
                 </table>
             </td>
         </tr>
