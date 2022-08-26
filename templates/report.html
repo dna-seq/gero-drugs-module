@@ -77,10 +77,10 @@
     <tr>
         <th><div onclick="collapseExpandAll(this, 'longTBody')" class="ui circular compact positive button">+</div></th>
         <th>Drug</th>
-        <th>Description</th>
+        <th>Drug summary</th>
+        <th>Delayed side effects</th>
         <th>Longevity usage</th>
         <th>Longevity pathways</th>
-        <th>Longevity association</th>
         <th>Longevity association</th>
         <th>Effect</th>
     </tr>
@@ -93,14 +93,14 @@
             <td><div class="ui tiny circular compact positive button">+</div></td>
             <td>${row['Drug']}</td>
             <td>${row['Drug summary']}</td>
-            <td>${row['Main adverse effects']}</td>
+            <td>${row['Delayed side effects']}</td>
             <td>${row['Longevity usage']}</td>
             <td>${row['Longevity pathways']}</td>
             <td>${row['Longevity association']}</td>
             <td>${row['Effect']}</td>
         </tr>
         <tr style="display:none;">
-            <td colspan="5">
+            <td colspan="6">
                 <%
                     import polars as pl
                     details = report.filter(pl.col("Drug").str.contains(row['Drug'])).to_dicts()
